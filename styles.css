@@ -25,4 +25,8 @@ h2 { margin: 8px 0; }
 .activity { margin-top: 16px; }
 .status { margin-bottom: 6px; color: #d6e2f4; }
 #explorerLink { color: #5fd4ff; }
+.activity-header { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid #243e60; color: #8ea0ba; font-size: .75rem; font-weight: 800; letter-spacing: .1em; margin-top: 22px; padding-top: 18px; }
+.activity-list { list-style: none; padding: 0; margin: 12px 0 0; }
+.activity-list li { border-top: 1px solid rgba(36,62,96,.6); color: #aebed3; font-family: ui-monospace, monospace; font-size: .84rem; padding: 12px 0; }
+.activity-list a { color: #5fd4ff; text-decoration: none; }
 @media (max-width: 740px) { .grid { grid-template-columns: 1fr; } .action-panel { align-items: flex-start; flex-direction: column; } .hero { padding-top: 62px; } }
