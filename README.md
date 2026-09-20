@@ -1,11 +1,16 @@
 # CookieChain Pulse
 
-A small, open-source Cookie Chain cApp that lets a visitor:
+CookieChain Pulse is a small, open-source Cookie Chain activity console. It uses the public Cookie Chain RPC directly, keeps every private key inside the connected wallet, and makes real on-chain actions explicit.
 
-- connect a Nightly Wallet (with a Phantom-compatible fallback);
-- view a connected address and live SOL balance from Cookie Chain;
-- view a live network slot; and
-- create a real, user-approved self-transfer transaction with confirmation and a CookieScan link.
+## What it does
+
+- Nightly-first wallet connection, with a Solana-compatible fallback;
+- live Cookie Chain slot plus genesis-hash verification;
+- connected address and native **COOK** balance;
+- recent, explorer-linked activity for the connected address; and
+- a real, user-approved Memo-program ping, followed by confirmation and a CookieScan link.
+
+The app uses Cookie Chain's public RPC (`https://rpc.cookiescan.io`) and the standard Solana client SDK. It has no server, API key, private key, analytics tracker, or hidden transaction flow.
 
 ## Run locally
 
@@ -15,7 +20,7 @@ This is a static site. From this directory, serve it with any static server, for
 npx serve .
 ```
 
-Open the local URL in a browser with Nightly Wallet installed and set to Cookie Chain.
+Open the local URL in a browser with Nightly Wallet installed. In Nightly, add Cookie Chain as a custom SVM network with `https://rpc.cookiescan.io`, then keep a small amount of COOK for network fees.
 
 ## Deployment
 
@@ -23,4 +28,4 @@ Deploy the folder unchanged to GitHub Pages, Netlify, Vercel, or any static host
 
 ## Safety
 
-The transfer button never sends funds automatically. It prepares a 0.000001 SOL self-transfer and the wallet owner must review and approve it in their wallet.
+The publish button never sends funds automatically. It creates a Memo instruction only after the wallet owner reviews and approves it. Network fees, if any, are shown by the wallet before signing.
