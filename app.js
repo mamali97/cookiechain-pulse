@@ -40,16 +40,26 @@ function setStatus(text, type = '') {
   els.status.style.color = type === 'error' ? '#ff8b9c' : type === 'ok' ? '#75efa8' : '#d6e2f4';
 }
 
+function withTimeout(promise, ms) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => setTimeout(() => reject(new Error('Timed out')), ms)),
+  ]);
+}
+
 async function refreshNetwork() {
   try {
-    const [slot, genesisHash] = await Promise.all([
-      connection.getSlot('confirmed'),
-      connection.getGenesisHash(),
-    ]);
+    const slot = await withTimeout(connection.getSlot('confirmed'), 6_000);
     els.slot.textContent = slot.toLocaleString();
-    els.network.textContent = genesisHash === COOKIE_GENESIS_HASH
-      ? 'Verified Cookie Chain network'
-      : 'RPC responded with an unexpected network';
+    els.network.textContent = 'Cookie Chain RPC live - checking identity';
+    try {
+      const genesisHash = await withTimeout(connection.getGenesisHash(), 3_000);
+      els.network.textContent = genesisHash === COOKIE_GENESIS_HASH
+        ? 'Verified Cookie Chain network'
+        : 'RPC responded with an unexpected network';
+    } catch {
+      els.network.textContent = 'Cookie Chain RPC live - identity check timed out';
+    }
   } catch {
     els.network.textContent = 'Unable to reach Cookie Chain RPC - retrying';
   }
