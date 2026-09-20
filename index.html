@@ -16,23 +16,23 @@
       <section id="top" class="hero">
         <p class="eyebrow">COOKIE CHAIN · SVM DASHBOARD</p>
         <h1>A tiny on-chain activity dashboard.</h1>
-        <p class="lead">Connect a Nightly wallet, inspect your Cookie Chain balance and send a self-transfer test transaction with clear status feedback.</p>
+        <p class="lead">A Nightly-first Cookie Chain console for live account data, verified network status and a user-approved on-chain Memo ping.</p>
       </section>
 
       <section class="grid" aria-label="Wallet dashboard">
         <article class="card wallet-card">
           <p class="label">CONNECTED WALLET</p>
           <p id="walletAddress" class="address">Not connected</p>
-          <p id="walletBalance" class="value">— SOL</p>
-          <p id="walletHint" class="muted">Nightly Wallet is supported. Phantom-compatible wallets can also connect.</p>
+          <p id="walletBalance" class="value">— COOK</p>
+          <p id="walletHint" class="muted">Install Nightly, unlock it, and set its custom RPC to Cookie Chain.</p>
         </article>
         <article class="card">
           <p class="label">COOKIE CHAIN RPC</p>
           <p class="value small">rpc.cookiescan.io</p>
-          <p id="networkStatus" class="muted">Checking network…</p>
+          <p id="networkStatus" class="muted">Verifying Cookie Chain…</p>
         </article>
         <article class="card">
-          <p class="label">LATEST SLOT</p>
+          <p class="label">LATEST SLOT · LIVE</p>
           <p id="latestSlot" class="value">—</p>
           <p class="muted">Live chain data</p>
         </article>
@@ -41,16 +41,18 @@
       <section class="action-panel">
         <div>
           <p class="eyebrow">ON-CHAIN TEST</p>
-          <h2>Send 0.000001 SOL to yourself</h2>
-          <p>This creates a real Cookie Chain transaction. You will see and approve it in your wallet before anything is sent.</p>
+          <h2>Publish a Cookie Chain Memo ping</h2>
+          <p>This creates a real, explorer-visible Memo transaction. Your wallet opens first; the app never sees your private key or submits without approval.</p>
         </div>
-        <button id="sendButton" class="button button-accent" disabled>Send test transaction</button>
+        <button id="sendButton" class="button button-accent" disabled>Publish on-chain ping</button>
       </section>
 
       <section class="card activity">
         <p class="label">ACTIVITY & STATUS</p>
         <p id="transactionStatus" class="status">Connect a wallet to begin.</p>
         <a id="explorerLink" hidden target="_blank" rel="noreferrer">View transaction</a>
+        <div class="activity-header"><span>RECENT ACTIVITY</span><span id="activityCount">0 records</span></div>
+        <ul id="activityList" class="activity-list"><li>Connect a wallet to load its Cookie Chain activity.</li></ul>
       </section>
     </main>
     <script type="module" src="./app.js"></script>
